@@ -39,15 +39,30 @@ export class GatewayBase {
 		this._contract = this._network.getContract(this._chaincodeName);
 	}
 
-	_destruct() {
+	close() {
 		this._gateway.close();
 		this._client.close();
 	}
 
-	async _invoke(methodName, ...args) {
-		console.log(`--> Invoke: ${this._chaincodeName}.${methodName}`);
+	async _evaluateTransaction(methodName, ...args) {
+		console.log(`--> Invoke (evaluate): ${this._chaincodeName}.${methodName}`);
 
 		const respBytes = await this._contract.evaluateTransaction(
+			methodName,
+			...args
+		);
+		const respJson = utf8Decoder.decode(respBytes);
+		const resp = JSON.parse(respJson);
+
+		console.log("*** Invoked successfully");
+
+		return resp.result;
+	}
+
+	async _submitTransaction(methodName, ...args) {
+		console.log(`--> Invoke (submit): ${this._chaincodeName}.${methodName}`);
+
+		const respBytes = await this._contract.submitTransaction(
 			methodName,
 			...args
 		);

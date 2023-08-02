@@ -9,6 +9,8 @@ export const test = async (req, res) => {
 export const testChaincode = async (req, res) => {
 	const gateway = await LeaveGateway.new();
 	const result = await gateway.hello();
+	gateway.close();
+
 	return res.json({
 		message: result.message,
 	});
