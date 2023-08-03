@@ -11,7 +11,7 @@ export const add = async (req, res) => {
 	}
 
 	const gateway = await LeaveGateway.new();
-	const result = await gateway.addAdmin("FOOBAR123");
+	const result = await gateway.addAdmin("CUB_user_personnel12312312301");
 	gateway.close();
 
 	return res.json({

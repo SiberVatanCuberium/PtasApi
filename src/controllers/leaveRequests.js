@@ -2,12 +2,14 @@ import { LeaveGateway } from "../gateways/leaveGateway.js";
 
 export const getAll = async (req, res) => {
 	const gateway = await LeaveGateway.new();
-	const result = await gateway.getLeaveRequests("FOOBAR123");
+	const result = await gateway.getLeaveRequests(
+		"CUB_user_personnel12312312301"
+	);
 	gateway.close();
 
 	return res.json({
 		ok: true,
-		data: result.personnels,
+		data: result.leaveRequests,
 	});
 };
 
@@ -22,7 +24,10 @@ export const getById = async (req, res) => {
 	}
 
 	const gateway = await LeaveGateway.new();
-	const result = await gateway.getLeaveRequestById("FOOBAR123", leaveRequestId);
+	const result = await gateway.getLeaveRequestById(
+		"CUB_user_personnel12312312301",
+		leaveRequestId
+	);
 	gateway.close();
 
 	return res.json({
@@ -43,7 +48,7 @@ export const add = async (req, res) => {
 
 	const gateway = await LeaveGateway.new();
 	const result = await gateway.createLeaveRequest(
-		"FOOBAR123",
+		"CUB_user_personnel12312312301",
 		date,
 		beginningTime,
 		endTime,
@@ -67,7 +72,10 @@ export const approve = async (req, res) => {
 	}
 
 	const gateway = await LeaveGateway.new();
-	const result = await gateway.approveLeaveRequest("FOOBAR123", leaveRequestId);
+	const result = await gateway.approveLeaveRequest(
+		"CUB_user_personnel12312312301",
+		leaveRequestId
+	);
 	gateway.close();
 
 	return res.json({
@@ -87,7 +95,10 @@ export const reject = async (req, res) => {
 	}
 
 	const gateway = await LeaveGateway.new();
-	const result = await gateway.rejectLeaveRequest("FOOBAR123", leaveRequestId);
+	const result = await gateway.rejectLeaveRequest(
+		"CUB_user_personnel12312312301",
+		leaveRequestId
+	);
 	gateway.close();
 
 	return res.json({
@@ -108,7 +119,7 @@ export const withdraw = async (req, res) => {
 
 	const gateway = await LeaveGateway.new();
 	const result = await gateway.withdrawLeaveRequest(
-		"FOOBAR123",
+		"CUB_user_personnel12312312301",
 		leaveRequestId
 	);
 	gateway.close();

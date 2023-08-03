@@ -2,7 +2,7 @@ import { LeaveGateway } from "../gateways/leaveGateway.js";
 
 export const getAll = async (req, res) => {
 	const gateway = await LeaveGateway.new();
-	const result = await gateway.getPersonnels("FOOBAR123");
+	const result = await gateway.getPersonnels("CUB_user_personnel12312312301");
 	gateway.close();
 
 	return res.json({
@@ -23,7 +23,7 @@ export const add = async (req, res) => {
 
 	const gateway = await LeaveGateway.new();
 	const result = await gateway.addPersonnel(
-		"FOOBAR123",
+		"CUB_user_personnel12312312301",
 		nationalId,
 		name,
 		surname,
